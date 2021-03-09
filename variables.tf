@@ -29,3 +29,19 @@ variable "SECURITY_GROUP_ID" {
     error_message = "The SECURITY_GROUP_ID value must be a valid security group identifier, starting with \"sg-\"."
   }
 }
+
+variable "BITBUCKET_USERNAME" {
+  type = string
+  validation {
+    condition     = length(var.BITBUCKET_USERNAME) > 0
+    error_message = "The BITBUCKET_USERNAME value must not be empty."
+  }
+}
+
+variable "BITBUCKET_PASSWORD" {
+  type = string
+  validation {
+    condition     = length(var.BITBUCKET_PASSWORD) > 0
+    error_message = "The BITBUCKET_PASSWORD value must not be empty."
+  }
+}
