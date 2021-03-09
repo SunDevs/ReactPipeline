@@ -3,7 +3,7 @@
 ########################
 
 resource "aws_iam_role" "codebuild" {
-  name = "codebuild-${var.PROJECT_NAME}"
+  name = "codebuild-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   assume_role_policy = jsonencode({
     Statement = [
       {
@@ -20,7 +20,7 @@ resource "aws_iam_role" "codebuild" {
 }
 
 resource "aws_iam_role" "codepipeline" {
-  name = "codepipeline-${var.PROJECT_NAME}"
+  name = "codepipeline-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   assume_role_policy = jsonencode({
     Statement = [
       {
@@ -41,7 +41,7 @@ resource "aws_iam_role" "codepipeline" {
 ################################
 
 resource "aws_iam_role_policy" "codebuild" {
-  name = "codebuild-${var.PROJECT_NAME}"
+  name = "codebuild-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   role = aws_iam_role.codebuild.id
   policy = jsonencode({
     Statement = [
@@ -75,7 +75,7 @@ resource "aws_iam_role_policy" "codebuild" {
 }
 
 resource "aws_iam_role_policy" "codepipeline" {
-  name = "codepipeline-${var.PROJECT_NAME}"
+  name = "codepipeline-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   role = aws_iam_role.codepipeline.id
   policy = jsonencode({
     Statement = [
