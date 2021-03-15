@@ -22,14 +22,6 @@ variable "SUBNET_ID" {
   }
 }
 
-variable "SECURITY_GROUP_ID" {
-  type = string
-  validation {
-    condition     = length(var.SECURITY_GROUP_ID) > 3 && substr(var.SECURITY_GROUP_ID, 0, 3) == "sg-"
-    error_message = "The SECURITY_GROUP_ID value must be a valid security group identifier, starting with \"sg-\"."
-  }
-}
-
 variable "BITBUCKET_USERNAME" {
   type = string
   validation {
@@ -43,5 +35,29 @@ variable "BITBUCKET_PASSWORD" {
   validation {
     condition     = length(var.BITBUCKET_PASSWORD) > 0
     error_message = "The BITBUCKET_PASSWORD value must not be empty."
+  }
+}
+
+variable "BITBUCKET_REPOSITORY" {
+  type = string
+  validation {
+    condition     = length(var.BITBUCKET_REPOSITORY) > 0
+    error_message = "The BITBUCKET_REPOSITORY value must not be empty."
+  }
+}
+
+variable "BITBUCKET_BRANCH" {
+  type = string
+  validation {
+    condition     = length(var.BITBUCKET_BRANCH) > 0
+    error_message = "The BITBUCKET_BRANCH value must not be empty."
+  }
+}
+
+variable "ARTIFACT_BUCKET" {
+  type = string
+  validation {
+    condition     = length(var.ARTIFACT_BUCKET) > 0
+    error_message = "The ARTIFACT_BUCKET value must not be empty."
   }
 }
