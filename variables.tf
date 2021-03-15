@@ -61,3 +61,11 @@ variable "ARTIFACT_BUCKET" {
     error_message = "The ARTIFACT_BUCKET value must not be empty."
   }
 }
+
+variable "PUBLIC_KEY_PATH" {
+  type = string
+  validation {
+    condition     = fileexists(var.PUBLIC_KEY_PATH)
+    error_message = "The PUBLIC_KEY_PATH value must reference an existing file."
+  }
+}
