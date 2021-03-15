@@ -54,14 +54,6 @@ variable "BITBUCKET_BRANCH" {
   }
 }
 
-variable "ARTIFACT_BUCKET" {
-  type = string
-  validation {
-    condition     = length(var.ARTIFACT_BUCKET) > 0
-    error_message = "The ARTIFACT_BUCKET value must not be empty."
-  }
-}
-
 variable "PUBLIC_KEY_PATH" {
   type = string
   validation {

@@ -1,10 +1,3 @@
-resource "aws_codebuild_source_credential" "bitbucket" {
-  auth_type   = "BASIC_AUTH"
-  server_type = "BITBUCKET"
-  token       = var.BITBUCKET_PASSWORD
-  user_name   = var.BITBUCKET_USERNAME
-}
-
 resource "aws_codebuild_project" "start" {
   name           = "codebuild-start-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   service_role   = aws_iam_role.codebuild.arn
@@ -25,7 +18,7 @@ resource "aws_codebuild_project" "start" {
     type      = "S3"
     packaging = "ZIP"
     name      = "START_OUTPUT"
-    location  = var.ARTIFACT_BUCKET
+    location  = aws_s3_bucket.artifact.id
   }
   logs_config {
     cloudwatch_logs {
