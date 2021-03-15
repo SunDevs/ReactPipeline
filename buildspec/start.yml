@@ -3,4 +3,4 @@ version: 0.2
 phases:
   install:
     commands:
-      - aws start-instances --instance-ids ${INSTANCE_ID}
+      - aws ec2 start-instances --instance-ids ${INSTANCE_ID}
