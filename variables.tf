@@ -22,35 +22,27 @@ variable "SUBNET_ID" {
   }
 }
 
-variable "BITBUCKET_USERNAME" {
+variable "CODESTAR_CONNECTION_ARN" {
   type = string
   validation {
-    condition     = length(var.BITBUCKET_USERNAME) > 0
-    error_message = "The BITBUCKET_USERNAME value must not be empty."
+    condition     = length(var.CODESTAR_CONNECTION_ARN) > 0
+    error_message = "The CODESTAR_CONNECTION_ARN value must not be empty."
   }
 }
 
-variable "BITBUCKET_PASSWORD" {
+variable "REPOSITORY_NAME" {
   type = string
   validation {
-    condition     = length(var.BITBUCKET_PASSWORD) > 0
-    error_message = "The BITBUCKET_PASSWORD value must not be empty."
+    condition     = length(var.REPOSITORY_NAME) > 0
+    error_message = "The REPOSITORY_NAME value must not be empty."
   }
 }
 
-variable "BITBUCKET_REPOSITORY" {
+variable "REPOSITORY_BRANCH" {
   type = string
   validation {
-    condition     = length(var.BITBUCKET_REPOSITORY) > 0
-    error_message = "The BITBUCKET_REPOSITORY value must not be empty."
-  }
-}
-
-variable "BITBUCKET_BRANCH" {
-  type = string
-  validation {
-    condition     = length(var.BITBUCKET_BRANCH) > 0
-    error_message = "The BITBUCKET_BRANCH value must not be empty."
+    condition     = length(var.REPOSITORY_BRANCH) > 0
+    error_message = "The REPOSITORY_BRANCH value must not be empty."
   }
 }
 
