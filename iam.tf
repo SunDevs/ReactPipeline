@@ -19,6 +19,23 @@ resource "aws_iam_role" "codebuild" {
   })
 }
 
+resource "aws_iam_role" "codedeploy" {
+  name = "codedeploy-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
+  assume_role_policy = jsonencode({
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "codedeploy.amazonaws.com"
+        }
+        Sid = ""
+      },
+    ]
+    Version = "2012-10-17"
+  })
+}
+
 resource "aws_iam_role" "codepipeline" {
   name = "codepipeline-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   assume_role_policy = jsonencode({
@@ -72,6 +89,11 @@ resource "aws_iam_role_policy" "codebuild" {
     ]
     Version = "2012-10-17"
   })
+}
+
+resource "aws_iam_role_policy_attachment" "codedeploy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+  role       = aws_iam_role.codedeploy.name
 }
 
 resource "aws_iam_role_policy" "codepipeline" {
