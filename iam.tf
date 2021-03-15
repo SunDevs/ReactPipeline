@@ -30,7 +30,7 @@ resource "aws_iam_role" "codedeploy" {
           Service = "codedeploy.amazonaws.com"
         }
         Sid = ""
-      },
+      }
     ]
     Version = "2012-10-17"
   })
@@ -47,7 +47,29 @@ resource "aws_iam_role" "codepipeline" {
           Service = "codepipeline.amazonaws.com"
         }
         Sid = ""
-      },
+      }
+    ]
+    Version = "2012-10-17"
+  })
+}
+
+resource "aws_iam_instance_profile" "ec2" {
+  name = "ec2-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
+  role = aws_iam_role.ec2.name
+}
+
+resource "aws_iam_role" "ec2" {
+  name = "ec2-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
+  assume_role_policy = jsonencode({
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+        Sid = ""
+      }
     ]
     Version = "2012-10-17"
   })
@@ -85,7 +107,7 @@ resource "aws_iam_role_policy" "codebuild" {
         Effect   = "Allow"
         Resource = "*"
         Sid      = ""
-      },
+      }
     ]
     Version = "2012-10-17"
   })
@@ -118,8 +140,13 @@ resource "aws_iam_role_policy" "codepipeline" {
         Effect   = "Allow"
         Resource = "*"
         Sid      = ""
-      },
+      }
     ]
     Version = "2012-10-17"
   })
+}
+
+resource "aws_iam_role_policy_attachment" "ec2" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+  role       = aws_iam_role.ec2.name
 }

@@ -33,6 +33,7 @@ resource "aws_instance" "ec2" {
   instance_type               = "t3.small"
   subnet_id                   = data.aws_subnet.subnet.id
   associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.ec2.id
   disable_api_termination     = false
   vpc_security_group_ids      = [aws_security_group.ec2.id]
   key_name                    = aws_key_pair.ec2.key_name
