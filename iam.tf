@@ -140,6 +140,24 @@ resource "aws_iam_role_policy" "codepipeline" {
         Effect   = "Allow"
         Resource = "*"
         Sid      = ""
+      },
+      {
+        Action   = "logs:*"
+        Effect   = "Allow"
+        Resource = "*"
+        Sid      = ""
+      },
+      {
+        Action   = "s3:*"
+        Effect   = "Allow"
+        Resource = "*"
+        Sid      = ""
+      },
+      {
+        Action   = "codedeploy:*"
+        Effect   = "Allow"
+        Resource = "*"
+        Sid      = ""
       }
     ]
     Version = "2012-10-17"
