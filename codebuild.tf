@@ -11,6 +11,14 @@ resource "aws_codebuild_project" "start" {
     compute_type = "BUILD_GENERAL1_SMALL"
     image        = "aws/codebuild/standard:1.0"
     type         = "LINUX_CONTAINER"
+    environment_variable {
+      name  = "APPSPEC_YML"
+      value = filebase64("${path.module}/codedeploy/appspec.yml")
+    }
+    environment_variable {
+      name  = "SCRIPT_BAT"
+      value = filebase64("${path.module}/codedeploy/script.bat")
+    }
   }
   artifacts {
     type      = "S3"
