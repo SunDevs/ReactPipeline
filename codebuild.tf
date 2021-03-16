@@ -3,7 +3,7 @@ resource "aws_codebuild_project" "start" {
   service_role = aws_iam_role.codebuild.arn
   source {
     type = "NO_SOURCE"
-    buildspec = templatefile("${path.module}/buildspec/start.yml", {
+    buildspec = templatefile("${path.module}/codebuild/start/buildspec.yml", {
       INSTANCE_ID = basename(aws_instance.ec2.arn)
     })
   }
@@ -30,7 +30,7 @@ resource "aws_codebuild_project" "stop" {
   service_role = aws_iam_role.codebuild.arn
   source {
     type = "NO_SOURCE"
-    buildspec = templatefile("${path.module}/buildspec/stop.yml", {
+    buildspec = templatefile("${path.module}/codebuild/stop/buildspec.yml", {
       INSTANCE_ID = basename(aws_instance.ec2.arn)
     })
   }
