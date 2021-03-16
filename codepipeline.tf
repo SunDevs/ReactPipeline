@@ -38,6 +38,22 @@ resource "aws_codepipeline" "pipeline" {
     }
   }
   stage {
+    name = "Deploy"
+    action {
+      name             = "Deploy"
+      category         = "Deploy"
+      owner            = "AWS"
+      provider         = "CodeDeploy"
+      input_artifacts  = ["START_OUTPUT"]
+      output_artifacts = []
+      version          = "1"
+      configuration = {
+        ApplicationName     = "deploy-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
+        DeploymentGroupName = "group-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
+      }
+    }
+  }
+  stage {
     name = "Stop"
     action {
       name             = "Stop"
@@ -45,7 +61,7 @@ resource "aws_codepipeline" "pipeline" {
       owner            = "AWS"
       provider         = "CodeBuild"
       input_artifacts  = ["START_OUTPUT"]
-      output_artifacts = ["STOP_OUTPUT"]
+      output_artifacts = []
       version          = "1"
       configuration = {
         ProjectName = aws_codebuild_project.stop.id
