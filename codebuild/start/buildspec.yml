@@ -4,6 +4,8 @@ phases:
   install:
     commands:
       - aws ec2 start-instances --instance-ids ${INSTANCE_ID}
+      - echo $APPSPEC_YML | base64 -d > appspec.yml
+      - echo $SCRIPT_BAT | base64 -d > script.bat
 
 artifacts:
   files:
