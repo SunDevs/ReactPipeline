@@ -16,8 +16,8 @@ resource "aws_codebuild_project" "start" {
       value = filebase64("${path.module}/codedeploy/appspec.yml")
     }
     environment_variable {
-      name  = "SCRIPT_BAT"
-      value = filebase64("${path.module}/codedeploy/script.bat")
+      name  = "SCRIPT_PS1"
+      value = filebase64("${path.module}/codedeploy/script.ps1")
     }
   }
   artifacts {
