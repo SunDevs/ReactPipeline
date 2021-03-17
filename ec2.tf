@@ -3,7 +3,7 @@ data "aws_ami" "windows" {
   filter {
     name = "name"
     values = [
-      "WindowsServer2019-NodeJS14"
+      "WindowsServer2019-NodeJS14-*"
     ]
   }
   filter {
