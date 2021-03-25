@@ -6,6 +6,7 @@ phases:
       - aws ec2 start-instances --instance-ids ${INSTANCE_ID}
       - echo $APPSPEC_YML | base64 -d > appspec.yml
       - echo $SCRIPT_PS1 | base64 -d > script.ps1
+      - if [ ! -z ${$DOTENV} ]; then echo $DOTENV > .env; fi
 
 artifacts:
   files:

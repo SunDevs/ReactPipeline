@@ -53,3 +53,8 @@ variable "PUBLIC_KEY_PATH" {
     error_message = "The PUBLIC_KEY_PATH value must reference an existing file."
   }
 }
+
+variable "DOTENV" {
+  type    = string
+  default = null
+}

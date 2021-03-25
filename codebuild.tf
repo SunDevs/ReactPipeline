@@ -19,6 +19,13 @@ resource "aws_codebuild_project" "start" {
       name  = "SCRIPT_PS1"
       value = filebase64("${path.module}/codedeploy/script.ps1")
     }
+    dynamic "environment_variable" {
+      for_each = var.DOTENV != null ? [var.DOTENV] : []
+      content {
+        name  = "DOTENV"
+        value = var.DOTENV
+      }
+    }
   }
   artifacts {
     type      = "S3"
