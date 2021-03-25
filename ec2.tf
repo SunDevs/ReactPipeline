@@ -39,7 +39,7 @@ resource "aws_instance" "ec2" {
   key_name                    = aws_key_pair.ec2.key_name
   root_block_device {
     volume_type = "gp2"
-    volume_size = 30
+    volume_size = 50
   }
   tags = {
     "Name" = "ec2-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
