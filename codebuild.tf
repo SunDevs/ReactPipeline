@@ -23,7 +23,7 @@ resource "aws_codebuild_project" "start" {
       for_each = var.DOTENV != null ? [var.DOTENV] : []
       content {
         name  = "DOTENV"
-        value = var.DOTENV
+        value = base64encode(var.DOTENV)
       }
     }
   }
