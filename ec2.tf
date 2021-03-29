@@ -24,8 +24,8 @@ data "aws_ami" "windows" {
 }
 
 resource "aws_key_pair" "ec2" {
-  key_name   = basename(var.PUBLIC_KEY_PATH)
-  public_key = file(var.PUBLIC_KEY_PATH)
+  key_name   = "key-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
+  public_key = var.PUBLIC_KEY
 }
 
 resource "aws_instance" "ec2" {

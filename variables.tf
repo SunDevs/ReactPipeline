@@ -46,12 +46,8 @@ variable "REPOSITORY_BRANCH" {
   }
 }
 
-variable "PUBLIC_KEY_PATH" {
+variable "PUBLIC_KEY" {
   type = string
-  validation {
-    condition     = fileexists(var.PUBLIC_KEY_PATH)
-    error_message = "The PUBLIC_KEY_PATH value must reference an existing file."
-  }
 }
 
 variable "DOTENV" {
