@@ -25,7 +25,7 @@ data "aws_ami" "windows" {
 
 resource "aws_key_pair" "ec2" {
   key_name   = "key-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
-  public_key = var.PUBLIC_KEY
+  public_key = var.EC2_PUBLIC_KEY
 }
 
 resource "aws_instance" "ec2" {

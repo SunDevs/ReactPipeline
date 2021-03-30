@@ -46,7 +46,7 @@ variable "REPOSITORY_BRANCH" {
   }
 }
 
-variable "PUBLIC_KEY" {
+variable "EC2_PUBLIC_KEY" {
   type = string
 }
 
