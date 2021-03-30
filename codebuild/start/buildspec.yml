@@ -7,6 +7,7 @@ phases:
       - echo $APPSPEC_YML | base64 -d > appspec.yml
       - echo $SCRIPT_PS1 | base64 -d > script.ps1
       - if [ ! -z $DOTENV ]; then echo $DOTENV | base64 -d > .env; fi
+      - if [ ! -z $GIT_PRIVATE_KEY ]; then echo $GIT_PRIVATE_KEY | base64 -d > id_rsa; fi
 
 artifacts:
   files:

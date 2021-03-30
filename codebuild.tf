@@ -26,6 +26,13 @@ resource "aws_codebuild_project" "start" {
         value = base64encode(var.DOTENV)
       }
     }
+    dynamic "environment_variable" {
+      for_each = var.GIT_PRIVATE_KEY != null ? [var.GIT_PRIVATE_KEY] : []
+      content {
+        name  = "GIT_PRIVATE_KEY"
+        value = base64encode(var.GIT_PRIVATE_KEY)
+      }
+    }
   }
   artifacts {
     type      = "S3"

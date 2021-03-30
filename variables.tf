@@ -54,3 +54,8 @@ variable "DOTENV" {
   type    = string
   default = null
 }
+
+variable "GIT_PRIVATE_KEY" {
+  type    = string
+  default = null
+}

@@ -1,5 +1,10 @@
 version: 0.0
 os: windows
+
+files:
+  - source: .\id_rsa
+    destination: C:\Users\Administrator\.ssh\
+
 hooks:
   AfterInstall:
     - location: script.ps1
