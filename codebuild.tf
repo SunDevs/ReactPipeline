@@ -16,8 +16,12 @@ resource "aws_codebuild_project" "start" {
       value = filebase64("${path.module}/codedeploy/appspec.yml")
     }
     environment_variable {
-      name  = "SCRIPT_PS1"
-      value = filebase64("${path.module}/codedeploy/script.ps1")
+      name  = "SCHEDULER_PS1"
+      value = filebase64("${path.module}/codedeploy/scheduler.ps1")
+    }
+    environment_variable {
+      name  = "BUILDER_PS1"
+      value = filebase64("${path.module}/codedeploy/builder.ps1")
     }
     dynamic "environment_variable" {
       for_each = var.DOTENV != null ? [var.DOTENV] : []
