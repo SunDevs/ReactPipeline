@@ -15,6 +15,12 @@ $HOUR = (Get-Date).AddMinutes(1).ToString("HH:mm")
 
 schtasks.exe /CREATE /SC ONCE /TN "builder" /TR "powershell.exe $PSScriptRoot\builder.ps1" /ST $HOUR /RU administrator /F
 
+while ((Get-ScheduledTask -TaskName 'builder').State  -ne 'Running') {
+    Write-Output "Waiting on scheduled task builder to be started..."
+    Start-Sleep 1
+}
+
 while ((Get-ScheduledTask -TaskName 'builder').State  -ne 'Ready') {
-    Write-Verbose -Message "Waiting on scheduled task builder..."
+    Write-Output "Waiting on scheduled task builder to be stopped..."
+    Start-Sleep 5
 }
