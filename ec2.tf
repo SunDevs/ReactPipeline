@@ -30,7 +30,7 @@ resource "aws_key_pair" "ec2" {
 
 resource "aws_instance" "ec2" {
   ami                         = data.aws_ami.windows.id
-  instance_type               = "t3.small"
+  instance_type               = var.EC2_INSTANCE_TYPE
   subnet_id                   = data.aws_subnet.subnet.id
   associate_public_ip_address = true
   iam_instance_profile        = aws_iam_instance_profile.ec2.id
@@ -39,7 +39,7 @@ resource "aws_instance" "ec2" {
   key_name                    = aws_key_pair.ec2.key_name
   root_block_device {
     volume_type = "gp2"
-    volume_size = 50
+    volume_size = var.EC2_VOLUME_SIZE
   }
   tags = {
     "Name" = "ec2-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"

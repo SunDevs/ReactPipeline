@@ -50,6 +50,16 @@ variable "EC2_PUBLIC_KEY" {
   type = string
 }
 
+variable "EC2_INSTANCE_TYPE" {
+  type    = string
+  default = "t3.medium"
+}
+
+variable "EC2_VOLUME_SIZE" {
+  type    = number
+  default = 50
+}
+
 variable "DOTENV" {
   type    = string
   default = null
