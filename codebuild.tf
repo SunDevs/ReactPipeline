@@ -4,7 +4,7 @@ resource "aws_codebuild_project" "start" {
   source {
     type = "NO_SOURCE"
     buildspec = templatefile("${path.module}/codebuild/start/buildspec.yml", {
-      INSTANCE_ID = basename(aws_instance.ec2.arn)
+      INSTANCE_ID = module.ec2.id[0]
     })
   }
   environment {
@@ -57,7 +57,7 @@ resource "aws_codebuild_project" "stop" {
   source {
     type = "NO_SOURCE"
     buildspec = templatefile("${path.module}/codebuild/stop/buildspec.yml", {
-      INSTANCE_ID = basename(aws_instance.ec2.arn)
+      INSTANCE_ID = module.ec2.id[0]
     })
   }
   environment {
