@@ -69,3 +69,7 @@ variable "GIT_PRIVATE_KEY" {
   type    = string
   default = null
 }
+
+variable "SNS" {
+  type = string
+}
