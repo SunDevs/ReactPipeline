@@ -24,3 +24,8 @@ while ((Get-ScheduledTask -TaskName 'builder').State  -ne 'Ready') {
     Write-Output "Waiting on scheduled task builder to be stopped..."
     Start-Sleep 5
 }
+
+
+$HOUR = (Get-Date).AddMinutes(3).ToString("HH:mm")
+
+schtasks.exe /CREATE /SC ONCE /TN "shutdown" /TR "powershell.exe Stop-Computer -ComputerName localhost" /ST $HOUR /RU administrator /F
