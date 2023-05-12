@@ -23,7 +23,7 @@ resource "aws_security_group" "ec2" {
   }
 }
 
-resource "aws_security_group_rule" "https" {
+resource "aws_security_group_rule" "httpsIngress" {
   type              = "ingress"
   from_port         = 443
   to_port           = 443
@@ -32,7 +32,7 @@ resource "aws_security_group_rule" "https" {
   security_group_id = aws_security_group.ec2.id
 }
 
-resource "aws_security_group_rule" "ephimeral" {
+resource "aws_security_group_rule" "ephimeralIngress" {
   type              = "ingress"
   from_port         = 1024
   to_port           = 65535
@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "ephimeral" {
   security_group_id = aws_security_group.ec2.id
 }
 
-resource "aws_security_group_rule" "https" {
+resource "aws_security_group_rule" "httpsEgress" {
   type              = "egress"
   from_port         = 443
   to_port           = 443
@@ -50,7 +50,7 @@ resource "aws_security_group_rule" "https" {
   security_group_id = aws_security_group.ec2.id
 }
 
-resource "aws_security_group_rule" "ephimeral" {
+resource "aws_security_group_rule" "ephimeralEgress" {
   type              = "egress"
   from_port         = 1024
   to_port           = 65535
