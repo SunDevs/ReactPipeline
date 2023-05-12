@@ -23,39 +23,39 @@ resource "aws_security_group" "ec2" {
   }
 }
 
-
-resource "aws_vpc_security_group_ingress_rule" "https" {
+resource "aws_security_group_rule" "https" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 443
-  ip_protocol = "tcp"
-  to_port     = 443
 }
 
-resource "aws_vpc_security_group_ingress_rule" "ephimeral" {
+resource "aws_security_group_rule" "ephimeral" {
+  type              = "ingress"
+  from_port         = 1024
+  to_port           = 65535
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 1024
-  ip_protocol = "tcp"
-  to_port     = 65535
 }
 
-resource "aws_vpc_security_group_egress_rule" "https" {
+resource "aws_security_group_rule" "https" {
+  type              = "egress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 443
-  ip_protocol = "tcp"
-  to_port     = 443
 }
 
-resource "aws_vpc_security_group_egress_rule" "ephimeral" {
+resource "aws_security_group_rule" "ephimeral" {
+  type              = "egress"
+  from_port         = 1024
+  to_port           = 65535
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 1024
-  ip_protocol = "tcp"
-  to_port     = 65535
 }
+
