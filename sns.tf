@@ -4,7 +4,8 @@ resource "aws_codestarnotifications_notification_rule" "notifications" {
     "codepipeline-pipeline-pipeline-execution-failed",
     "codepipeline-pipeline-pipeline-execution-canceled",
     "codepipeline-pipeline-pipeline-execution-started",
-    "codepipeline-pipeline-pipeline-execution-succeeded"
+    "codepipeline-pipeline-pipeline-execution-succeeded",
+    "codepipeline-pipeline-pipeline-execution-superseded"
   ]
 
   name     = "${lower(var.PROJECT_NAME)}-${random_pet.value.id}-notification"
