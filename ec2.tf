@@ -54,11 +54,3 @@ module "ec2" {
     Name = "ec2-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
   }
 }
-
-resource "aws_eip" "eip" {
-  vpc      = true
-  instance = module.ec2.id[0]
-  tags = {
-    Name = "ec2-${lower(var.PROJECT_NAME)}-${random_pet.value.id}"
-  }
-}
